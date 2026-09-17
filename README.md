@@ -10,7 +10,7 @@ This repository contains the Programming Assignment #4 for ECE2112, implemented 
 
 # A. VISAYAS COMMUNICATION DATAFRAME
 
-**Objective:** dsadsa
+**Objective:** Load `board2.xlsx` and create a DataFrame and extract specific and defined 
 
 ---------
 
@@ -19,6 +19,9 @@ This repository contains the Programming Assignment #4 for ECE2112, implemented 
 The function was constructed as:
 ```python
 import pandas as pd
+board2 = pd.read_excel('board2.xlsx')
+board2['Average'] = board2[['Math', 'Electronics', 'GEAS', 'Communication']].mean(axis=1)
+board2
 
 VisComm = board2.loc[(board2['Hometown'] == 'Visayas') & (board2['Track'] == 'Communication')]
 
