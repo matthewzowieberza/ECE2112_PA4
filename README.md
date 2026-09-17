@@ -8,21 +8,23 @@
 
 This repository contains the Programming Assignment #4 for ECE2112, implemented in a Jupyter Notebook. It contains Data Wrangling and Matplotlib concepts from Module 4.
 
-# A. VISAYAS COMMUNICATION DATAFRAME
-
-**Objective:** Load `board2.xlsx` and create a DataFrame and extract specific and defined 
-
----------
-
-**Discussion:** dasdsadsa
-
-The function was constructed as:
 ```python
 import pandas as pd
 board2 = pd.read_excel('board2.xlsx')
 board2['Average'] = board2[['Math', 'Electronics', 'GEAS', 'Communication']].mean(axis=1)
 board2
+```
 
+# A. VISAYAS COMMUNICATION DATAFRAME
+
+**Objective:** Filter and extract specific score data for students whose Hometown is Visayas and whose chosen track is Communication.
+
+---------
+
+**Discussion:** This task demonstrates boolean indexing using multiple conditions combined with the logical AND operator (`&`). By passing these combined conditions into `board2.loc[]`, we isolate the exact student sub-population and subset the DataFrame to show only relevant attributes: `Name`, `Gender`, `Math`, `Electronics`, and `Average`.
+
+The function was constructed as:
+```python
 VisComm = board2.loc[(board2['Hometown'] == 'Visayas') & (board2['Track'] == 'Communication')]
 
 VisComm = VisComm[['Name', 'Gender', 'Math', 'Electronics', 'Average']]
@@ -31,12 +33,13 @@ VisComm
 
 # B. VISAYAS FEMALE DATAFRAME
 
-**Objective:** dsadsa
+**Objective:** Identify female examinees from Visayas who successfully achieved a passing overall score (>= 60).
 
 ---------
 
-**Discussion:** dsadsadsa
+**Discussion:** This step builds on multi-criteria filtering by introducing a numeric conditional threshold on an engineered feature (`Average >= 60`). Filtering in two stages (or in a single compound conditional statement) allows us to pinpoint passing female examinees while trimming unnecessary columns to focus specifically on `Name`, `Track`, `GEAS`, `Electronics`, and `Average`.
 
+Python
 The function was constructed as:
 ```python
 VisFemale = board2.loc[(board2['Hometown'] == 'Visayas') & (board2['Gender'] == 'Female')]
@@ -48,11 +51,11 @@ VisFemale.loc[VisFemale['Average'] >= 60]
 
 # C. CATEGORY-AVERAGE VISUALIZATION
 
-**Objective:** dsadsa
+**Objective:** Analyze and summarize average examinee performance grouped by demographic and academic classifications (`Track`, `Gender`, and `Hometown`).
 
 ----------
 
-**Discussion:**
+**Discussion:** Using the `groupby()` method coupled with the `.mean()` aggregate function allows us to extract summary statistics across different categories. Resetting the index (`.reset_index()`) ensures the resulting aggregated data maintains a clean tabular DataFrame structure, which simplifies downstream analysis and plotting.
 
 The function was constructed as:
 ```python
